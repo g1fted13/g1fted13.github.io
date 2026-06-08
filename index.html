@@ -1,7 +1,732 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal website for Woohyun Song, a Seoul National University computer science student interested in machine learning and noisy real-world data.">
+  <title>Woohyun Song | Personal Website</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --primary: #0066cc;
+      --primary-focus: #0071e3;
+      --primary-on-dark: #2997ff;
+      --ink: #1d1d1f;
+      --muted: #7a7a7a;
+      --muted-dark: #cccccc;
+      --canvas: #ffffff;
+      --parchment: #f5f5f7;
+      --pearl: #fafafc;
+      --tile-dark: #272729;
+      --tile-dark-2: #2a2a2c;
+      --black: #000000;
+      --hairline: #e0e0e0;
+      --product-shadow: rgba(0, 0, 0, 0.22) 3px 5px 30px 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.47;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      text-underline-offset: 0.22em;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--primary-focus);
+      outline-offset: 4px;
+      border-radius: 9999px;
+    }
+
+    .global-nav {
+      min-height: 44px;
+      background: var(--black);
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .nav-inner,
+    .subnav-inner,
+    .tile-inner,
+    .footer-inner {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding-inline: clamp(18px, 4vw, 64px);
+    }
+
+    .nav-inner {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: clamp(14px, 2vw, 28px);
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    .subnav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      min-height: 52px;
+      background: rgba(245, 245, 247, 0.82);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+
+    .subnav-inner {
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .subnav-title {
+      color: var(--ink);
+      font-family: "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.19;
+    }
+
+    .subnav-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      line-height: 1.29;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 22px;
+      border: 1px solid var(--primary);
+      border-radius: 9999px;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1;
+      text-decoration: none;
+      transition: transform 120ms ease;
+    }
+
+    .button:hover {
+      text-decoration: none;
+    }
+
+    .button:active {
+      transform: scale(0.95);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--primary);
+    }
+
+    .dark .button.secondary,
+    .dark-2 .button.secondary {
+      color: var(--primary-on-dark);
+      border-color: var(--primary-on-dark);
+    }
+
+    .button.small {
+      min-height: 30px;
+      padding: 7px 14px;
+      font-size: 14px;
+    }
+
+    main {
+      background: var(--canvas);
+    }
+
+    .tile {
+      min-height: min(860px, calc(100vh - 44px));
+      display: grid;
+      align-items: center;
+      padding-block: 80px;
+      text-align: center;
+    }
+
+    .tile.light {
+      background: var(--canvas);
+      color: var(--ink);
+    }
+
+    .tile.parchment {
+      background: var(--parchment);
+      color: var(--ink);
+    }
+
+    .tile.dark {
+      background: var(--tile-dark);
+      color: #ffffff;
+    }
+
+    .tile.dark-2 {
+      background: var(--tile-dark-2);
+      color: #ffffff;
+    }
+
+    .tile-inner {
+      display: grid;
+      justify-items: center;
+      gap: 24px;
+    }
+
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+      align-items: center;
+      gap: clamp(36px, 7vw, 92px);
+      text-align: left;
+    }
+
+    .hero-copy {
+      justify-self: end;
+      max-width: 640px;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.29;
+    }
+
+    .dark .eyebrow,
+    .dark-2 .eyebrow {
+      color: var(--muted-dark);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2 {
+      font-family: "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 600;
+    }
+
+    h1 {
+      max-width: 780px;
+      font-size: clamp(2.5rem, 7vw, 3.5rem);
+      line-height: 1.07;
+    }
+
+    h2 {
+      max-width: 860px;
+      font-size: clamp(2rem, 5vw, 2.5rem);
+      line-height: 1.1;
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.24;
+    }
+
+    .lead {
+      max-width: 760px;
+      color: var(--ink);
+      font-family: "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      font-weight: 400;
+      line-height: 1.14;
+    }
+
+    .dark .lead,
+    .dark-2 .lead {
+      color: var(--muted-dark);
+    }
+
+    .copy {
+      max-width: 800px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.47;
+    }
+
+    .dark .copy,
+    .dark-2 .copy {
+      color: var(--muted-dark);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-copy .actions {
+      margin-top: 28px;
+    }
+
+    .profile-photo {
+      width: min(100%, 390px);
+      aspect-ratio: 1;
+      display: block;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: var(--product-shadow);
+    }
+
+    .fact-grid {
+      width: min(100%, 980px);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .project-grid {
+      width: min(100%, 1080px);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .utility-card {
+      min-height: 172px;
+      padding: 24px;
+      border: 1px solid var(--hairline);
+      border-radius: 18px;
+      background: var(--canvas);
+      color: var(--ink);
+    }
+
+    .utility-card p {
+      margin-top: 8px;
+      color: var(--muted);
+    }
+
+    .utility-card a {
+      display: inline-flex;
+      margin-top: 14px;
+    }
+
+    .tutorial {
+      width: min(100%, 1080px);
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: start;
+      gap: 32px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .tutorial-copy {
+      display: grid;
+      gap: 18px;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .step-list li {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .step-number {
+      display: inline-flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      background: rgba(41, 151, 255, 0.18);
+      color: var(--primary-on-dark);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .step-list p {
+      color: var(--muted-dark);
+      margin-top: 5px;
+    }
+
+    .resume-panel {
+      width: min(100%, 780px);
+      display: grid;
+      gap: 16px;
+      justify-items: center;
+      margin-top: 10px;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .pearl-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 14px;
+      border: 3px solid rgba(0, 0, 0, 0.04);
+      border-radius: 11px;
+      background: var(--pearl);
+      color: #333333;
+      font-size: 14px;
+      line-height: 1.43;
+    }
+
+    footer {
+      background: var(--parchment);
+      color: #333333;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 64px;
+    }
+
+    footer a {
+      color: #333333;
+    }
+
+    @media (max-width: 980px) {
+      .fact-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tutorial {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 833px) {
+      .nav-links a:not(:last-child) {
+        display: none;
+      }
+
+      .subnav-actions a:not(.button) {
+        display: none;
+      }
+
+      .tile {
+        min-height: auto;
+        padding-block: 64px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-copy {
+        justify-self: center;
+      }
+
+      .hero-copy .actions,
+      .actions {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner,
+      .subnav-inner,
+      .tile-inner,
+      .footer-inner {
+        padding-inline: 18px;
+      }
+
+      .tile {
+        padding-block: 48px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      h2 {
+        font-size: 34px;
+      }
+
+      .lead {
+        font-size: 24px;
+        line-height: 1.5;
+      }
+
+      .profile-photo {
+        width: min(82vw, 320px);
+      }
+
+      .step-list li {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 419px) {
+      h1,
+      h2 {
+        font-size: 28px;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .subnav-title {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
 <body>
-  <h1>Welcome to my Personal Page</h1>
-  <p>Hosted on GitHub Pages!</p>
+  <header>
+    <nav class="global-nav" aria-label="Global navigation">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Woohyun Song home">Woohyun Song</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#statiz">STATIZ</a>
+          <a href="#projects">Projects</a>
+          <a href="#resume">CV</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <nav class="subnav" aria-label="Page navigation">
+      <div class="subnav-inner">
+        <a class="subnav-title" href="#top">ML, data, and baseball</a>
+        <div class="subnav-actions">
+          <a href="#statiz">STATIZ</a>
+          <a href="#contact">Contact</a>
+          <a class="button small" href="assets/cv.pdf">CV</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="tile light" aria-labelledby="intro-title">
+      <div class="tile-inner hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Seoul National University · Computer Science and Engineering</p>
+          <h1 id="intro-title">Woohyun Song</h1>
+          <p class="lead">
+            I look for predictable structure and useful signals in noisy,
+            high-variance real-world data.
+          </p>
+          <div class="actions" aria-label="Primary links">
+            <a class="button" href="#statiz">View STATIZ Project</a>
+            <a class="button secondary" href="assets/cv.pdf">Open CV</a>
+          </div>
+        </div>
+        <img class="profile-photo" src="assets/profile.jpg" alt="Profile photo of Woohyun Song">
+      </div>
+    </section>
+
+    <section id="about" class="tile parchment" aria-labelledby="about-title">
+      <div class="tile-inner">
+        <p class="eyebrow">About</p>
+        <h2 id="about-title">A CS student focused on practical machine learning systems.</h2>
+        <p class="copy">
+          I am pursuing a B.S. in Computer Science and Engineering at Seoul National University.
+          My work centers on machine learning, sports analytics, alpha research, and systems
+          that turn messy live data into decisions.
+        </p>
+        <div class="fact-grid">
+          <article class="utility-card">
+            <h3>Education</h3>
+            <p>Seoul National University, B.S. in Computer Science and Engineering.</p>
+          </article>
+          <article class="utility-card">
+            <h3>Interests</h3>
+            <p>Machine learning, noisy data, sports analytics, and predictive modeling.</p>
+          </article>
+          <article class="utility-card">
+            <h3>Tools</h3>
+            <p>Python, C++, pandas, NumPy, scikit-learn, and SQL.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="statiz" class="tile dark" aria-labelledby="statiz-title">
+      <div class="tile-inner">
+        <p class="eyebrow">Featured Project</p>
+        <h2 id="statiz-title">STATIZ KBO win-probability prediction system.</h2>
+        <p class="lead">
+          An end-to-end forecasting pipeline for the 1st STATIZ KBO Outcome Prediction
+          Competition, from live data collection to daily API submission.
+        </p>
+        <div class="tutorial">
+          <div class="tutorial-copy">
+            <p class="copy">
+              I built a system that predicts home-team win probability for KBO regular-season
+              games, generates features from live and historical baseball data, trains an
+              ensemble model, and submits daily predictions through the competition API.
+            </p>
+            <div class="actions">
+              <a class="button" href="assets/An%20Automated%20KBO%20Win-Probability%20Prediction%20and%20Submission%20System%20for%20the%20STATIZ%20Forecasting%20Competition.pdf">Read Project PDF</a>
+              <a class="button secondary" href="#projects">More Projects</a>
+            </div>
+          </div>
+          <ol class="step-list" aria-label="STATIZ project tutorial">
+            <li>
+              <span class="step-number">01</span>
+              <div>
+                <h3>Collect reliable inputs</h3>
+                <p>Pull schedule, lineup, team, pitcher, and game context data through signed STATIZ API calls.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">02</span>
+              <div>
+                <h3>Build leakage-safe features</h3>
+                <p>Create home-minus-away differences such as lineup OPS gap, starter quality, bullpen fatigue, and park interactions.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">03</span>
+              <div>
+                <h3>Train an ensemble</h3>
+                <p>Combine RandomForest and ElasticNet logistic regression, validated with expanding-window backtesting.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">04</span>
+              <div>
+                <h3>Submit and monitor</h3>
+                <p>Run the deployed pipeline on AWS EC2 with an HTML dashboard for per-game prediction review.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="tile light" aria-labelledby="projects-title">
+      <div class="tile-inner">
+        <p class="eyebrow">Projects & Research</p>
+        <h2 id="projects-title">Work at the intersection of prediction and messy data.</h2>
+        <div class="project-grid">
+          <article class="utility-card">
+            <h3>STATIZ KBO Outcome Prediction</h3>
+            <p>End-to-end KBO win-probability forecasting and automated submission system.</p>
+            <a href="assets/An%20Automated%20KBO%20Win-Probability%20Prediction%20and%20Submission%20System%20for%20the%20STATIZ%20Forecasting%20Competition.pdf">Open write-up</a>
+          </article>
+          <article class="utility-card">
+            <h3>International Quant Championship 2026</h3>
+            <p>Team alpha research using reversion, news momentum, sentiment, and alternative data signals.</p>
+          </article>
+          <article class="utility-card">
+            <h3>KBO Intentional Walk Strategy</h3>
+            <p>Analyzed strategic baseball variables with logistic regression, decision trees, and SVM.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="resume" class="tile dark-2" aria-labelledby="resume-title">
+      <div class="tile-inner">
+        <p class="eyebrow">CV</p>
+        <h2 id="resume-title">A concise record of coursework, research, and projects.</h2>
+        <div class="resume-panel">
+          <p class="lead">
+            My CV includes education, ML/data projects, military service, relevant coursework,
+            technical skills, and certifications.
+          </p>
+          <div class="actions">
+            <a class="button" href="assets/cv.pdf">Open CV PDF</a>
+            <a class="button secondary" href="mailto:g1fted13@snu.ac.kr">Email me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="tile parchment" aria-labelledby="contact-title">
+      <div class="tile-inner">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Let’s connect.</h2>
+        <p class="copy">
+          You can reach me through my SNU email or LinkedIn profile.
+        </p>
+        <div class="contact-list" aria-label="Contact links">
+          <a class="pearl-chip" href="mailto:g1fted13@snu.ac.kr">g1fted13@snu.ac.kr</a>
+          <a class="pearl-chip" href="https://www.linkedin.com/in/woohyun-song-58569a299">LinkedIn</a>
+          <a class="pearl-chip" href="assets/cv.pdf">CV PDF</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>&copy; 2026 Woohyun Song. Built for GitHub Pages.</p>
+      <p><a href="#top">Back to top</a></p>
+    </div>
+  </footer>
 </body>
 </html>
