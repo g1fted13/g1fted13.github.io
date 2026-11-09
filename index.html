@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Woohyun Song, B.S. student in Computer Science and Engineering at Seoul National University. Machine learning, sports analytics, and noisy real-world data.">
+  <meta name="description" content="Woohyun Song, B.S. student in Computer Science and Engineering at Seoul National University. Machine learning on tabular and time series data to support decision-making.">
   <title>Woohyun Song</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -135,7 +135,6 @@
       object-position: center 18%;
       background: #ece9e3;
       border: 1px solid var(--rule);
-      filter: saturate(1.02);
     }
 
     .hero__body {
@@ -150,7 +149,6 @@
       font-weight: 600;
       font-size: 2.55rem;
       line-height: 1.05;
-      letter-spacing: 0;
       margin: 0 0 8px;
     }
 
@@ -186,7 +184,7 @@
       font-size: 1.18rem;
       line-height: 1.62;
       color: #2a2a2d;
-      margin: 0 0 8px;
+      margin: 0;
     }
 
     .intro p {
@@ -212,7 +210,6 @@
       font-family: var(--serif);
       font-weight: 600;
       font-size: 1.42rem;
-      letter-spacing: 0;
       margin: 0;
       white-space: nowrap;
     }
@@ -228,12 +225,6 @@
       display: grid;
       grid-template-columns: 116px 1fr;
       gap: 4px 24px;
-      padding: 14px 0;
-      border-top: 1px solid var(--rule-soft);
-    }
-
-    .entry:first-of-type {
-      border-top: none;
     }
 
     .entry__date {
@@ -253,19 +244,12 @@
       font-size: 1.04rem;
       color: var(--ink);
       margin: 0 0 2px;
-      letter-spacing: 0;
     }
 
     .entry__org {
       color: var(--ink-soft);
       font-size: 0.98rem;
       margin: 0;
-    }
-
-    .entry__sub {
-      color: var(--ink-soft);
-      font-size: 0.95rem;
-      margin: 3px 0 0;
     }
 
     .yeargrid {
@@ -309,7 +293,6 @@
     .pub__title {
       font-weight: 600;
       font-size: 1.05rem;
-      letter-spacing: 0;
       margin: 0;
       line-height: 1.35;
     }
@@ -363,10 +346,6 @@
       color: var(--ink-faint);
     }
 
-    .links a {
-      color: var(--link);
-    }
-
     .links .sep {
       color: var(--rule);
       margin: 0 7px;
@@ -386,48 +365,10 @@
       color: var(--star);
     }
 
-    .honors {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .honor {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4px 18px;
-      align-items: baseline;
-      padding: 12px 0;
-      border-top: 1px solid var(--rule-soft);
-    }
-
-    .honor:first-child {
-      border-top: none;
-    }
-
-    .honor__what {
-      font-size: 1rem;
-      margin: 0;
-    }
-
-    .honor__what b {
-      font-weight: 600;
-    }
-
-    .honor__what span {
-      color: var(--ink-soft);
-    }
-
-    .honor__when {
-      font-size: 0.84rem;
-      color: var(--ink-faint);
-      white-space: nowrap;
-      text-align: right;
-    }
-
     .deflist {
       display: grid;
       grid-template-columns: 116px 1fr;
-      gap: 14px 24px;
+      gap: 12px 24px;
       margin: 0;
     }
 
@@ -449,55 +390,16 @@
       font-weight: 600;
     }
 
-    .chip {
-      display: inline-block;
-      border: 1px solid var(--rule);
-      background: var(--card);
-      border-radius: 5px;
-      padding: 2px 9px;
-      font-size: 0.9rem;
+    .plain {
+      margin: 0;
       color: var(--ink-soft);
-      margin: 0 4px 4px 0;
-    }
-
-    .aibox {
-      border: 1px solid var(--rule);
-      background: var(--card);
-      border-radius: 7px;
-      padding: 22px 26px;
-    }
-
-    .aibox__lead {
-      margin: 0 0 16px;
-      color: var(--ink);
-      font-size: 1rem;
-    }
-
-    .aibox__meta {
-      display: grid;
-      grid-template-columns: 92px 1fr;
-      gap: 10px 22px;
-      margin: 0;
-    }
-
-    .aibox__meta dt {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--ink-faint);
-      padding-top: 3px;
-    }
-
-    .aibox__meta dd {
-      margin: 0;
       font-size: 0.99rem;
-      color: var(--ink-soft);
-      line-height: 1.55;
+      line-height: 1.7;
     }
 
-    .aibox__meta dd:nth-of-type(1) {
-      color: var(--ink);
-      font-weight: 600;
+    .plain .dot {
+      color: var(--ink-faint);
+      margin: 0 8px;
     }
 
     footer {
@@ -549,15 +451,28 @@
 
       .topbar__inner {
         justify-content: center;
-        padding: 10px 18px;
+        padding: 10px 16px;
       }
 
       .nav {
         justify-content: center;
+        gap: 4px 12px;
+      }
+
+      .nav a {
+        font-size: 0.88rem;
+      }
+
+      .nav__cv {
+        display: none;
       }
 
       main {
-        padding: 0 18px 80px;
+        padding: 0 16px 80px;
+      }
+
+      footer {
+        padding: 24px 16px 50px;
       }
 
       .entry,
@@ -577,6 +492,10 @@
         margin-bottom: -8px;
       }
 
+      .deflist dd + dt {
+        margin-top: 10px;
+      }
+
       .pub__head {
         flex-direction: column;
         gap: 2px;
@@ -586,21 +505,8 @@
         padding-top: 0;
       }
 
-      .honor {
-        grid-template-columns: 1fr;
-      }
-
-      .honor__when {
-        text-align: left;
-      }
-
-      .aibox__meta {
-        grid-template-columns: 1fr;
-        gap: 3px;
-      }
-
-      .aibox__meta dt {
-        padding-top: 8px;
+      .plain .dot {
+        margin: 0 5px;
       }
     }
   </style>
@@ -610,12 +516,12 @@
     <div class="topbar__inner">
       <a class="topbar__name" href="#top">Woohyun Song</a>
       <nav class="nav" aria-label="Sections">
-        <a href="#about">About</a>
+        <a href="#education">Education</a>
         <a href="#projects">Projects</a>
-        <a href="#service">Service</a>
         <a href="#coursework">Coursework</a>
         <a href="#skills">Skills</a>
-        <a href="assets/cv.pdf">CV</a>
+        <a href="#service">Service</a>
+        <a class="nav__cv" href="assets/cv.pdf">CV</a>
       </nav>
     </div>
   </div>
@@ -625,77 +531,60 @@
       <img class="hero__photo" src="assets/profile.jpg" alt="Woohyun Song">
       <div class="hero__body">
         <h1 class="hero__name">Woohyun Song</h1>
-        <p class="hero__role">B.S. Student, SNU Computer Science &amp; Engineering</p>
+        <p class="hero__role">B.S. Student, Computer Science and Engineering, Seoul National University</p>
         <div class="hero__links" aria-label="Profile links">
           <a href="mailto:g1fted13@snu.ac.kr">Email</a>
-          <a href="https://www.linkedin.com/in/woohyun-song-58569a299">LinkedIn</a>
           <a href="https://github.com/g1fted13">GitHub</a>
+          <a href="https://www.linkedin.com/in/woohyun-song-58569a299">LinkedIn</a>
           <a href="assets/cv.pdf">CV</a>
         </div>
       </div>
     </header>
 
     <div class="intro">
-      <p>I am an undergraduate student in the <a href="https://cse.snu.ac.kr/en/">Department of Computer Science and Engineering</a> at <a href="https://en.snu.ac.kr">Seoul National University</a>. I look for predictable structure and useful signals in noisy, high-variance real-world data - most often through machine learning applied to sports analytics and quantitative alpha research.</p>
-      <p>My recent work spans an end-to-end KBO win-probability prediction system and systematic alpha research in a global quant competition. I enjoy building systems that turn messy live data into decisions, from feature engineering and model validation to deployment and monitoring.</p>
+      <p>I am an undergraduate student in the <a href="https://cse.snu.ac.kr/en/">Department of Computer Science and Engineering</a> at <a href="https://en.snu.ac.kr">Seoul National University</a>. I am interested in using machine learning on tabular and time series data to support decision-making, in areas such as sports and finance.</p>
     </div>
 
-    <section id="about">
-      <div class="sec-head"><h2>About</h2><div class="rule"></div></div>
-
+    <section id="education">
+      <div class="sec-head"><h2>Education</h2><div class="rule"></div></div>
       <div class="entry">
-        <div class="entry__date">2022 - Present</div>
+        <div class="entry__date">Mar 2022 &ndash; Present</div>
         <div class="entry__main">
           <p class="entry__title">Seoul National University</p>
           <p class="entry__org">B.S. in Computer Science and Engineering</p>
         </div>
       </div>
-
-      <div class="entry">
-        <div class="entry__date">2024 - 2025</div>
-        <div class="entry__main">
-          <p class="entry__title">Republic of Korea Air Force</p>
-          <p class="entry__org">Sergeant, Tactical Communications Operator</p>
-          <p class="entry__sub">Mandatory military service.</p>
-        </div>
-      </div>
     </section>
 
     <section id="projects">
-      <div class="sec-head"><h2>Projects &amp; Research</h2><div class="rule"></div></div>
+      <div class="sec-head"><h2>Projects</h2><div class="rule"></div></div>
 
       <div class="yeargrid">
         <div class="yeargrid__year">2026</div>
         <div class="pubs">
           <article class="pub">
             <div class="pub__head">
-              <h3 class="pub__title">An Automated KBO Win-Probability Prediction &amp; Submission System</h3>
-              <span class="pub__when">Mar 2026 - Present</span>
+              <h3 class="pub__title">KBO Game Outcome Prediction</h3>
+              <span class="pub__when">Mar 2026 &ndash; Sep 2026</span>
             </div>
-            <p class="pub__venue">1st STATIZ KBO Outcome Prediction Competition</p>
+            <p class="pub__venue">STATIZ KBO AI Prediction Competition, team of 3</p>
             <ul class="pub__list">
-              <li>Built an end-to-end ML pipeline predicting home-team win probability for KBO regular-season games and auto-submitting daily picks via the competition API, deployed on AWS EC2.</li>
-              <li>Designed 31 leakage-safe features as home-away differences, including starting-lineup OPS-sum gap, starters' blended-FIP gap, key-bullpen fatigue gap, and park interaction terms.</li>
-              <li>Trained a RandomForest and ElasticNet logistic-regression ensemble on about 2,410 games from the 2023-2025 seasons with expanding-window backtesting.</li>
+              <li>Designed game-level features from baseball statistics based on prior studies (e.g., FIP, Pythagorean win percentage, bullpen fatigue), and proposed a random forest + logistic regression ensemble.</li>
+              <li>Made a dashboard that let all teammates check input features and predictions from anywhere; used it to find and fix edge-case errors in the first model.</li>
             </ul>
-            <div class="links">
-              <a href="assets/An%20Automated%20KBO%20Win-Probability%20Prediction%20and%20Submission%20System%20for%20the%20STATIZ%20Forecasting%20Competition.pdf">Project PDF</a>
-            </div>
-            <div class="star">Ranked 3rd overall out of about 50 teams as of May 28, 2026.</div>
+            <div class="star">Selected as an outstanding submission in the Hidden Extra Challenge of Computer Programming (SNU, Spring 2026), an extra-credit assignment on solving real-world problems with LLMs.</div>
           </article>
 
           <article class="pub">
             <div class="pub__head">
-              <h3 class="pub__title">Systematic Alpha Research on WorldQuant BRAIN</h3>
-              <span class="pub__when">Mar 2026 - Present</span>
+              <h3 class="pub__title">WorldQuant International Quant Championship (IQC) 2026</h3>
+              <span class="pub__when">2026</span>
             </div>
-            <p class="pub__venue">International Quant Championship 2026</p>
+            <p class="pub__venue">Team of 2</p>
             <ul class="pub__list">
-              <li>Developed systematic alpha signals as a team in a global alpha-research competition with 100,000+ teams.</li>
-              <li>Engineered reversion and news-momentum alphas from alternative data, including social-media sentiment and news-flow signals.</li>
-              <li>Used LLMs to accelerate hypothesis generation and alpha-expression iteration.</li>
+              <li>Researched alpha signals on the WorldQuant BRAIN platform, mostly based on company fundamental data.</li>
             </ul>
-            <div class="star">Ranked global #95 and Korea #7 on the in-sample leaderboard; advanced to Stage 2.</div>
+            <div class="star">Advanced to Stage 2; ranked in the global top 20%.</div>
           </article>
         </div>
       </div>
@@ -705,34 +594,12 @@
         <div class="pubs">
           <article class="pub">
             <div class="pub__head">
-              <h3 class="pub__title">Analyzing Effective Intentional-Walk Strategies in KBO Using ML</h3>
-              <span class="pub__when">Mar - Jun 2023</span>
+              <h3 class="pub__title">Intentional Walk Analysis in Baseball</h3>
+              <span class="pub__when">Spring 2023</span>
             </div>
-            <p class="pub__venue">Independent Project, Scientific Writing (L0440.000900)</p>
+            <p class="pub__venue">Course project, Scientific and Technical Writing</p>
             <ul class="pub__list">
-              <li>First independent project, undertaken with no prior AI background; manually collected and processed raw data due to the lack of existing datasets.</li>
-              <li>Applied logistic regression, decision trees, and SVM to analyze strategic variables including pitcher ERA, base-out state, and OPS.</li>
-            </ul>
-            <div class="star">A+</div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="service">
-      <div class="sec-head"><h2>Military Service</h2><div class="rule"></div></div>
-
-      <div class="yeargrid">
-        <div class="yeargrid__year">2024 - 2025</div>
-        <div class="pubs">
-          <article class="pub">
-            <div class="pub__head">
-              <h3 class="pub__title">Republic of Korea Air Force, Tactical Communications Operator</h3>
-              <span class="pub__when">Feb 2024 - Nov 2025</span>
-            </div>
-            <ul class="pub__list">
-              <li>As a member of the Soldier Autonomy Committee, planned and ran a peer Talent-Sharing Mentoring Program to expand self-development opportunities on base.</li>
-              <li>Taught introductory algorithms, including graph theory, dynamic programming, backtracking, and binary search.</li>
+              <li>Analyzed hand-collected game data with logistic regression and SVM.</li>
             </ul>
           </article>
         </div>
@@ -741,42 +608,44 @@
 
     <section id="coursework">
       <div class="sec-head"><h2>Relevant Coursework</h2><div class="rule"></div></div>
-      <dl class="deflist">
-        <dt>2026 Spring</dt>
-        <dd><b>Introduction to Machine Learning</b> and <b>Computational Linguistics</b> <span style="color:var(--ink-faint)">(in progress)</span></dd>
-        <dt>Earlier</dt>
-        <dd>Artificial Intelligence (Fall 2023) and Linear Algebra (Winter 2025)</dd>
-      </dl>
+      <p class="plain">Introduction to Machine Learning<span class="dot">&middot;</span>Linear Algebra<span class="dot">&middot;</span>Econometrics<span class="dot">&middot;</span>Computer Programming</p>
     </section>
 
     <section id="skills">
-      <div class="sec-head"><h2>Skills &amp; Certifications</h2><div class="rule"></div></div>
+      <div class="sec-head"><h2>Skills</h2><div class="rule"></div></div>
       <dl class="deflist">
+        <dt>Programming</dt>
+        <dd>C++, Python (pandas, scikit-learn)</dd>
+        <dt>Certification</dt>
+        <dd>SQL Developer (SQLD)</dd>
         <dt>Languages</dt>
-        <dd><span class="chip">Python</span><span class="chip">C++</span></dd>
-        <dt>ML &amp; Data</dt>
-        <dd><span class="chip">pandas</span><span class="chip">NumPy</span><span class="chip">scikit-learn</span><span class="chip">SQL</span></dd>
-        <dt>Certifications</dt>
-        <dd>SQLD (SQL Developer) and TOEIC 955</dd>
+        <dd>Korean (native), English (TOEIC 955, OPIc IH)</dd>
       </dl>
     </section>
 
-    <section id="ai-usage">
-      <div class="sec-head"><h2>AI Usage</h2><div class="rule"></div></div>
-      <div class="aibox">
-        <p class="aibox__lead">This website was designed and built with the help of an AI tool.</p>
-        <dl class="aibox__meta">
-          <dt>Tool</dt>
-          <dd>Claude Design (Anthropic)</dd>
-          <dt>Prompt</dt>
-          <dd>&ldquo;Referencing jaeminyoo.github.io, build my personal homepage in the same academic layout, and fill in the details from my CV in the assets folder.&rdquo;</dd>
-        </dl>
+    <section id="service">
+      <div class="sec-head"><h2>Military Service</h2><div class="rule"></div></div>
+      <div class="yeargrid">
+        <div class="yeargrid__year">2024 &ndash; 2025</div>
+        <div class="pubs">
+          <article class="pub">
+            <div class="pub__head">
+              <h3 class="pub__title">Republic of Korea Air Force</h3>
+              <span class="pub__when">Feb 2024 &ndash; Nov 2025</span>
+            </div>
+            <p class="pub__venue">Tactical Communications Operator</p>
+            <ul class="pub__list">
+              <li>As a member of the soldiers' autonomy committee, planned and ran a peer talent-sharing mentoring program on base.</li>
+              <li>Taught introductory algorithms (graph theory, dynamic programming, backtracking, binary search) to fellow soldiers using practice problems.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <span>&copy; 2026 Woohyun Song</span>
+    <span>&copy; 2026 Woohyun Song &middot; Last updated November 2026</span>
     <span><a href="mailto:g1fted13@snu.ac.kr">g1fted13@snu.ac.kr</a> / <a href="#top">Back to top</a></span>
   </footer>
 </body>
